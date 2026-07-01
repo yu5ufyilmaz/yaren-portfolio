@@ -1,0 +1,1471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yaren Ayvalı | Graphic Designer</title>
+    <meta name="description" content="Yaren Ayvalı grafik tasarım portfolyosu. Branding, editorial design, sosyal medya ve ambalaj projeleri.">
+    <link rel="icon" type="image/jpeg" href="assets/portfolio/thumb-50.jpg">
+    <style>
+        :root {
+            --blue: #0457ff;
+            --pink: #ff0a92;
+            --ink: #101010;
+            --paper: #fffaf1;
+            --smoke: rgba(255, 255, 255, 0.78);
+            --glass: rgba(255, 255, 255, 0.34);
+            --line: rgba(16, 16, 16, 0.18);
+            --shadow: 0 28px 70px rgba(0, 0, 0, 0.28);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow: hidden;
+            overflow-x: hidden;
+            background: #f5f1eb;
+            color: var(--ink);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            letter-spacing: 0;
+        }
+
+        button,
+        input,
+        textarea {
+            font: inherit;
+            letter-spacing: 0;
+        }
+
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .screen {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            isolation: isolate;
+        }
+
+        @keyframes wallpaperIn {
+            from {
+                opacity: 0;
+                filter: saturate(1.18) contrast(1.08) blur(10px);
+                transform: scale(1.08);
+            }
+            to {
+                opacity: 1;
+                filter: saturate(1.08) contrast(1.04) blur(0);
+                transform: scale(1.03);
+            }
+        }
+
+        @keyframes riseIn {
+            from {
+                opacity: 0;
+                transform: translateY(18px) scale(0.96);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes plateIn {
+            from {
+                opacity: 0;
+                transform: translateY(-12px) scale(0.97);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes iconIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.9);
+                filter: blur(6px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+
+        @keyframes layerFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes windowOpen {
+            from {
+                opacity: 0;
+                transform: translateY(18px) scale(0.96);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .wallpaper {
+            position: absolute;
+            inset: -3%;
+            background-image: url("assets/portfolio/bg-yaren.jpg");
+            background-size: cover;
+            background-position: center;
+            filter: saturate(1.08) contrast(1.04);
+            transform: scale(1.03);
+            animation: wallpaperIn 1200ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+            z-index: -3;
+        }
+
+        .wallpaper::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(90deg, rgba(255, 250, 241, 0.55), rgba(255, 250, 241, 0.16) 42%, rgba(255, 250, 241, 0.52)),
+                rgba(255, 255, 255, 0.08);
+            z-index: -2;
+        }
+
+        .grain {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.16;
+            background-image:
+                linear-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+            background-size: 18px 18px;
+            mix-blend-mode: soft-light;
+            z-index: -1;
+        }
+
+        .desktop {
+            position: absolute;
+            top: 96px;
+            bottom: 112px;
+            left: 50%;
+            width: min(1040px, calc(100vw - 56px));
+            display: grid;
+            grid-template-columns: repeat(8, minmax(0, 1fr));
+            grid-auto-rows: min-content;
+            gap: 22px 10px;
+            align-content: start;
+            justify-items: center;
+            overflow-y: auto;
+            padding: 6px 0 16px;
+            transform: translateX(-50%);
+            z-index: 2;
+            scrollbar-width: none;
+        }
+
+        .desktop::-webkit-scrollbar {
+            display: none;
+        }
+
+        .project-icon {
+            position: relative;
+            width: 124px;
+            min-height: 104px;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            color: #fff;
+            cursor: pointer;
+            transform: none;
+            transition: transform 180ms ease, filter 180ms ease;
+            text-align: center;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.72);
+            opacity: 0;
+            animation: iconIn 640ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms) both;
+        }
+
+        .project-icon:hover,
+        .project-icon:focus-visible {
+            transform: scale(1.06);
+            filter: saturate(1.12);
+            outline: 0;
+        }
+
+        .project-icon:focus-visible .icon-thumb {
+            box-shadow: 0 0 0 3px #fff, 0 0 0 6px var(--pink), 0 14px 28px rgba(0, 0, 0, 0.28);
+        }
+
+        .icon-thumb {
+            display: block;
+            width: 66px;
+            height: 66px;
+            margin: 0 auto 8px;
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.82);
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.28);
+        }
+
+        .icon-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .icon-label {
+            display: inline-block;
+            max-width: 124px;
+            padding: 2px 7px 4px;
+            border-radius: 8px;
+            background: rgba(20, 20, 20, 0.28);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 800;
+            line-height: 1.1;
+            text-transform: uppercase;
+            overflow-wrap: anywhere;
+        }
+
+        .dock-wrap {
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 18px;
+            z-index: 20;
+            display: flex;
+            justify-content: center;
+            pointer-events: none;
+            animation: riseIn 720ms cubic-bezier(0.2, 0.8, 0.2, 1) 360ms both;
+        }
+
+        .dock {
+            pointer-events: auto;
+            min-height: 68px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            border: 1px solid rgba(255, 255, 255, 0.52);
+            border-radius: 22px;
+            background: rgba(42, 42, 42, 0.32);
+            box-shadow: 0 18px 55px rgba(0, 0, 0, 0.28);
+            backdrop-filter: blur(18px);
+        }
+
+        .dock-divider {
+            width: 1px;
+            height: 42px;
+            background: rgba(255, 255, 255, 0.38);
+            margin: 0 3px;
+        }
+
+        .dock-item {
+            position: relative;
+            width: 48px;
+            height: 48px;
+            display: grid;
+            place-items: center;
+            border: 0;
+            border-radius: 12px;
+            background: #fff;
+            color: var(--ink);
+            font-weight: 900;
+            font-size: 17px;
+            line-height: 1;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+            transition: transform 160ms ease, margin 160ms ease, box-shadow 160ms ease;
+        }
+
+        .dock-item.has-icon {
+            overflow: hidden;
+            padding: 0;
+            background: transparent;
+        }
+
+        .dock-item.has-icon img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: contain;
+            border-radius: inherit;
+        }
+
+        .dock-item:hover,
+        .dock-item:focus-visible {
+            transform: translateY(-8px) scale(1.18);
+            margin-left: 5px;
+            margin-right: 5px;
+            outline: 0;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.28);
+        }
+
+        .dock-ae { background: #1f1648; color: #c8b7ff; }
+        .dock-ps { background: #061f42; color: #6fd2ff; }
+        .dock-ai { background: #351600; color: #ffae38; }
+        .dock-note { background: #fff9be; color: #725600; font-size: 24px; }
+        .dock-gallery { background: #f3f7ff; color: var(--blue); font-size: 23px; }
+        .dock-ig { background: #ff0a92; color: #fff; font-size: 21px; }
+        .dock-mail { background: #ffffff; color: #0a6bff; font-size: 21px; }
+        .dock-bin { background: #ece9e2; color: #57534d; font-size: 21px; }
+
+        .dock-item::after,
+        .project-icon::after {
+            content: attr(aria-label);
+            position: absolute;
+            left: 50%;
+            bottom: calc(100% + 8px);
+            transform: translateX(-50%);
+            min-width: max-content;
+            max-width: 180px;
+            padding: 5px 8px;
+            border-radius: 8px;
+            background: rgba(16, 16, 16, 0.82);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            line-height: 1.15;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 140ms ease;
+            text-shadow: none;
+            z-index: 50;
+        }
+
+        .project-icon::after {
+            bottom: auto;
+            top: -30px;
+        }
+
+        .dock-item:hover::after,
+        .dock-item:focus-visible::after,
+        .project-icon:hover::after,
+        .project-icon:focus-visible::after {
+            opacity: 1;
+        }
+
+        .window-layer {
+            position: fixed;
+            inset: 0;
+            z-index: 40;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 34px 28px 112px;
+            background: rgba(0, 0, 0, 0.18);
+        }
+
+        .window-layer.is-open {
+            display: flex;
+            animation: layerFadeIn 220ms ease both;
+        }
+
+        .window-layer.is-open .mac-window {
+            animation: windowOpen 420ms cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .mac-window {
+            width: min(1060px, 100%);
+            max-height: calc(100vh - 150px);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.58);
+            border-radius: 14px;
+            background: rgba(255, 250, 241, 0.94);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(18px);
+        }
+
+        .title-bar {
+            height: 38px;
+            flex: 0 0 38px;
+            display: grid;
+            grid-template-columns: 90px 1fr 90px;
+            align-items: center;
+            border-bottom: 1px solid rgba(16, 16, 16, 0.12);
+            background: rgba(255, 255, 255, 0.72);
+            padding: 0 13px;
+        }
+
+        .traffic {
+            display: flex;
+            gap: 8px;
+        }
+
+        .traffic button {
+            width: 13px;
+            height: 13px;
+            padding: 0;
+            border: 0;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .traffic button:focus-visible {
+            outline: 2px solid var(--blue);
+            outline-offset: 2px;
+        }
+
+        .dot-close { background: #ff5f57; }
+        .dot-min { background: #febc2e; }
+        .dot-max { background: #28c840; }
+
+        .window-title {
+            min-width: 0;
+            color: rgba(16, 16, 16, 0.66);
+            font-size: 12px;
+            font-weight: 800;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .window-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 7px;
+        }
+
+        .circle-action {
+            width: 28px;
+            height: 28px;
+            border: 1px solid rgba(16, 16, 16, 0.16);
+            border-radius: 50%;
+            background: #fff;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .circle-action:hover,
+        .circle-action:focus-visible {
+            outline: 0;
+            border-color: var(--pink);
+            color: var(--pink);
+        }
+
+        .project-window-body {
+            display: grid;
+            grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.75fr);
+            min-height: 0;
+            overflow: hidden;
+        }
+
+        .media-stage {
+            min-height: 0;
+            padding: 18px;
+            display: grid;
+            grid-template-rows: minmax(0, 1fr) auto;
+            gap: 12px;
+            border-right: 1px solid rgba(16, 16, 16, 0.12);
+            background: rgba(255, 255, 255, 0.34);
+        }
+
+        .main-image {
+            min-height: 360px;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+            border: 1px solid rgba(16, 16, 16, 0.1);
+            border-radius: 10px;
+            background: #fff;
+        }
+
+        .main-image img {
+            width: 100%;
+            height: 100%;
+            max-height: calc(100vh - 290px);
+            object-fit: contain;
+            display: block;
+        }
+
+        .filmstrip {
+            display: flex;
+            gap: 8px;
+            min-height: 62px;
+            overflow-x: auto;
+            padding-bottom: 2px;
+            scrollbar-width: thin;
+        }
+
+        .filmstrip button {
+            width: 82px;
+            height: 58px;
+            flex: 0 0 82px;
+            padding: 0;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #fff;
+            cursor: pointer;
+        }
+
+        .filmstrip button.is-active {
+            border-color: var(--pink);
+        }
+
+        .filmstrip img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .project-info {
+            min-height: 0;
+            overflow-y: auto;
+            padding: 26px 24px;
+        }
+
+        .project-kicker {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            min-height: 26px;
+            padding: 5px 9px;
+            border-radius: 999px;
+            background: #fff;
+            color: rgba(16, 16, 16, 0.72);
+            font-size: 11px;
+            font-weight: 900;
+            text-transform: uppercase;
+            border: 1px solid rgba(16, 16, 16, 0.12);
+        }
+
+        .project-info h1 {
+            margin: 0;
+            color: var(--ink);
+            font-size: 44px;
+            line-height: 0.92;
+            font-weight: 950;
+            text-transform: uppercase;
+        }
+
+        .project-info p {
+            margin: 18px 0 0;
+            color: rgba(16, 16, 16, 0.76);
+            font-size: 15px;
+            line-height: 1.62;
+        }
+
+        .project-count {
+            margin-top: 22px;
+            color: var(--pink);
+            font-size: 12px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        .about-body {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(320px, 0.9fr);
+            gap: 0;
+            min-height: 0;
+        }
+
+        .about-image {
+            min-height: 460px;
+            background: #111;
+            overflow: hidden;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .about-copy {
+            padding: 32px;
+            background: var(--paper);
+            overflow-y: auto;
+        }
+
+        .about-copy h2 {
+            margin: 0;
+            color: var(--pink);
+            font-size: 54px;
+            line-height: 0.9;
+            font-weight: 950;
+            text-transform: uppercase;
+        }
+
+        .about-copy p {
+            margin: 20px 0 0;
+            color: rgba(16, 16, 16, 0.78);
+            font-size: 15px;
+            line-height: 1.65;
+        }
+
+        .about-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 24px;
+        }
+
+        .about-links a {
+            min-height: 38px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 9px 13px;
+            border: 1px solid rgba(16, 16, 16, 0.16);
+            border-radius: 999px;
+            background: #fff;
+            color: var(--ink);
+            font-size: 13px;
+            font-weight: 900;
+            text-decoration: none;
+        }
+
+        .about-links a:hover,
+        .about-links a:focus-visible {
+            border-color: var(--pink);
+            color: var(--pink);
+            outline: 0;
+        }
+
+        .cv-body {
+            max-height: calc(100vh - 190px);
+            overflow-y: auto;
+            display: grid;
+            grid-template-columns: minmax(0, 0.72fr) minmax(300px, 0.58fr);
+            gap: 0;
+            background: var(--paper);
+        }
+
+        .cv-preview {
+            min-height: 470px;
+            padding: 22px;
+            overflow: hidden;
+            background: #fff;
+            border-right: 1px solid rgba(16, 16, 16, 0.12);
+        }
+
+        .cv-preview img {
+            width: 100%;
+            height: 100%;
+            max-height: calc(100vh - 240px);
+            object-fit: contain;
+            display: block;
+            border: 1px solid rgba(16, 16, 16, 0.1);
+            border-radius: 8px;
+            background: var(--paper);
+        }
+
+        .cv-copy {
+            padding: 30px 28px;
+        }
+
+        .cv-copy h2 {
+            margin: 0;
+            color: var(--ink);
+            font-size: 48px;
+            line-height: 0.92;
+            font-weight: 950;
+            text-transform: uppercase;
+        }
+
+        .cv-copy p {
+            margin: 18px 0 0;
+            color: rgba(16, 16, 16, 0.74);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .cv-meta {
+            display: grid;
+            gap: 9px;
+            margin-top: 22px;
+            color: rgba(16, 16, 16, 0.72);
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .cv-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 26px;
+        }
+
+        .cv-actions a {
+            min-height: 42px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 15px;
+            border-radius: 999px;
+            border: 1px solid rgba(16, 16, 16, 0.14);
+            background: #fff;
+            color: var(--ink);
+            font-size: 13px;
+            font-weight: 950;
+            text-decoration: none;
+        }
+
+        .cv-actions a.primary {
+            border-color: var(--pink);
+            background: var(--pink);
+            color: #fff;
+        }
+
+        .cv-actions a:hover,
+        .cv-actions a:focus-visible {
+            outline: 0;
+            transform: translateY(-1px);
+        }
+
+        .empty-state {
+            display: none;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: min(430px, calc(100vw - 40px));
+            padding: 18px;
+            border-radius: 12px;
+            background: rgba(255, 250, 241, 0.86);
+            color: var(--ink);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+            text-align: center;
+        }
+
+        .empty-state strong {
+            display: block;
+            color: var(--pink);
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+
+        .empty-state span {
+            display: block;
+            margin-top: 8px;
+            color: rgba(16, 16, 16, 0.68);
+            font-size: 13px;
+            line-height: 1.45;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 1ms !important;
+                animation-delay: 0ms !important;
+                transition-duration: 1ms !important;
+            }
+        }
+
+        @media (max-width: 980px) {
+            body {
+                overflow: auto;
+            }
+
+            .screen {
+                min-height: 100vh;
+                height: auto;
+                overflow: visible;
+                padding-bottom: 110px;
+            }
+
+            .wallpaper,
+            .grain {
+                position: fixed;
+                inset: 0;
+                transform: none;
+            }
+
+            .desktop {
+                position: relative;
+                inset: auto;
+                left: auto;
+                top: auto;
+                bottom: auto;
+                width: auto;
+                min-height: auto;
+                padding: 98px 18px 24px;
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 24px 8px;
+                overflow: visible;
+                transform: none;
+            }
+
+            .project-icon {
+                position: relative;
+                left: auto;
+                top: auto;
+                width: 100%;
+                transform: none;
+            }
+
+            .project-icon:hover,
+            .project-icon:focus-visible {
+                transform: scale(1.04);
+            }
+
+            .project-icon::after,
+            .dock-item::after {
+                display: none;
+            }
+
+            .window-layer {
+                align-items: flex-start;
+                padding: 22px 14px 104px;
+                overflow-y: auto;
+            }
+
+            .mac-window {
+                max-height: none;
+            }
+
+            .project-window-body,
+            .about-body,
+            .cv-body {
+                grid-template-columns: 1fr;
+            }
+
+            .media-stage {
+                border-right: 0;
+                border-bottom: 1px solid rgba(16, 16, 16, 0.12);
+            }
+
+            .main-image {
+                min-height: 260px;
+            }
+
+            .main-image img {
+                max-height: 420px;
+            }
+
+            .project-info h1 {
+                font-size: 36px;
+            }
+
+            .cv-preview {
+                min-height: 360px;
+                border-right: 0;
+                border-bottom: 1px solid rgba(16, 16, 16, 0.12);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .desktop {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                padding-top: 92px;
+            }
+
+            .icon-thumb {
+                width: 70px;
+                height: 70px;
+            }
+
+            .dock-wrap {
+                bottom: 10px;
+            }
+
+            .dock {
+                width: calc(100vw - 18px);
+                justify-content: flex-start;
+                gap: 6px;
+                padding: 8px;
+                border-radius: 18px;
+                overflow-x: auto;
+                scrollbar-width: none;
+            }
+
+            .dock::-webkit-scrollbar {
+                display: none;
+            }
+
+            .dock-item {
+                width: 42px;
+                height: 42px;
+                flex: 0 0 42px;
+                font-size: 15px;
+            }
+
+            .dock-note,
+            .dock-gallery,
+            .dock-ig,
+            .dock-mail,
+            .dock-bin {
+                font-size: 19px;
+            }
+
+            .title-bar {
+                grid-template-columns: 70px 1fr 74px;
+            }
+
+            .window-actions {
+                gap: 4px;
+            }
+
+            .circle-action {
+                width: 25px;
+                height: 25px;
+            }
+
+            .media-stage,
+            .project-info,
+            .about-copy,
+            .cv-copy,
+            .cv-preview {
+                padding: 14px;
+            }
+
+            .project-info h1 {
+                font-size: 30px;
+            }
+
+            .about-copy h2,
+            .cv-copy h2 {
+                font-size: 40px;
+            }
+
+            .about-image {
+                min-height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+<main class="screen" aria-label="Yaren Ayvalı portfolio desktop">
+    <div class="wallpaper"></div>
+    <div class="grain"></div>
+
+    <section class="desktop" id="desktop" aria-label="Projeler"></section>
+
+    <section class="empty-state" id="emptyState" aria-live="polite">
+        <strong>Portfolyo boş</strong>
+        <span>Proje listesi boş olduğunda burada hiçbir ikon gösterilmez.</span>
+    </section>
+
+    <div class="dock-wrap" aria-label="Kısayollar">
+        <nav class="dock">
+            <button class="dock-item dock-ae has-icon" type="button" data-filter="Motion" aria-label="Motion"><img src="assets/icons/after-effects.png" alt=""></button>
+            <button class="dock-item dock-ps has-icon" type="button" data-filter="Editorial" aria-label="Editorial"><img src="assets/icons/photoshop.png" alt=""></button>
+            <button class="dock-item dock-ai has-icon" type="button" data-filter="Branding" aria-label="Branding"><img src="assets/icons/illustrator.png" alt=""></button>
+            <div class="dock-divider" aria-hidden="true"></div>
+            <button class="dock-item dock-note" type="button" id="aboutButton" aria-label="About">◆</button>
+            <button class="dock-item dock-gallery" type="button" id="cvButton" aria-label="CV">CV</button>
+            <a class="dock-item dock-ig has-icon" href="https://www.instagram.com/yareniadsgn/" target="_blank" rel="noopener" aria-label="Instagram"><img src="assets/icons/instagram.png" alt=""></a>
+            <a class="dock-item dock-mail has-icon" href="mailto:yarenayvali3947@gmail.com" aria-label="Mail"><img src="assets/icons/mail.png" alt=""></a>
+            <div class="dock-divider" aria-hidden="true"></div>
+            <button class="dock-item dock-bin has-icon" type="button" id="clearFilterButton" aria-label="Tümü"><img src="assets/icons/trash.png" alt=""></button>
+        </nav>
+    </div>
+</main>
+
+<div class="window-layer" id="projectLayer" role="dialog" aria-modal="true" aria-labelledby="projectTitle">
+    <article class="mac-window">
+        <div class="title-bar">
+            <div class="traffic">
+                <button class="dot-close" type="button" data-close aria-label="Kapat"></button>
+                <button class="dot-min" type="button" data-close aria-label="Küçült"></button>
+                <button class="dot-max" type="button" aria-label="Tam ekran"></button>
+            </div>
+            <div class="window-title" id="projectWindowTitle">Project</div>
+            <div class="window-actions">
+                <button class="circle-action" type="button" id="prevProject" aria-label="Önceki proje">‹</button>
+                <button class="circle-action" type="button" id="nextProject" aria-label="Sonraki proje">›</button>
+            </div>
+        </div>
+        <div class="project-window-body">
+            <div class="media-stage">
+                <div class="main-image">
+                    <img id="projectImage" src="" alt="">
+                </div>
+                <div class="filmstrip" id="filmstrip" aria-label="Proje görselleri"></div>
+            </div>
+            <div class="project-info">
+                <div class="project-kicker">
+                    <span class="chip" id="projectCategory"></span>
+                    <span class="chip" id="projectYear"></span>
+                </div>
+                <h1 id="projectTitle"></h1>
+                <p id="projectDescription"></p>
+                <div class="project-count" id="projectCount"></div>
+            </div>
+        </div>
+    </article>
+</div>
+
+<div class="window-layer" id="aboutLayer" role="dialog" aria-modal="true" aria-labelledby="aboutTitle">
+    <article class="mac-window">
+        <div class="title-bar">
+            <div class="traffic">
+                <button class="dot-close" type="button" data-close aria-label="Kapat"></button>
+                <button class="dot-min" type="button" data-close aria-label="Küçült"></button>
+                <button class="dot-max" type="button" aria-label="Tam ekran"></button>
+            </div>
+            <div class="window-title">About Yaren</div>
+            <div></div>
+        </div>
+        <div class="about-body">
+            <div class="about-image">
+                <img src="assets/portfolio/page-04.jpg" alt="Yaren Ayvalı about page">
+            </div>
+            <div class="about-copy">
+                <h2 id="aboutTitle">About Me</h2>
+                <p>Yaren Ayvalı, Izmir merkezli bir grafik tasarımcı. Branding, editorial design ve sosyal medya görsel sistemleri üzerine çalışıyor; akademi, stüdyo ve ajans deneyimini temiz, güçlü ve ritimli tasarım çözümlerine dönüştürüyor.</p>
+                <p>Bu portfolyo, basılı işler, marka kimliği, ambalaj, afiş, yayın tasarımı ve dijital kampanya görsellerinden oluşan seçkiyi masaüstü metaforu içinde sunar.</p>
+                <div class="about-links">
+                    <a href="mailto:yarenayvali3947@gmail.com">Mail</a>
+                    <a href="https://www.instagram.com/yareniadsgn/" target="_blank" rel="noopener">Instagram</a>
+                </div>
+            </div>
+        </div>
+    </article>
+</div>
+
+<div class="window-layer" id="cvLayer" role="dialog" aria-modal="true" aria-labelledby="cvTitle">
+    <article class="mac-window">
+        <div class="title-bar">
+            <div class="traffic">
+                <button class="dot-close" type="button" data-close aria-label="Kapat"></button>
+                <button class="dot-min" type="button" data-close aria-label="Küçült"></button>
+                <button class="dot-max" type="button" aria-label="Tam ekran"></button>
+            </div>
+            <div class="window-title" id="cvTitle">CV</div>
+            <div></div>
+        </div>
+        <div class="cv-body">
+            <div class="cv-preview">
+                <img src="assets/documents/yaren-ayvali-cv-preview.jpg" alt="Yaren Ayvali CV preview">
+            </div>
+            <div class="cv-copy">
+                <h2>Yaren Ayvali CV</h2>
+                <p>Graphic design CV dosyasini PDF olarak indirebilirsin. Dosya tek sayfalik, yazdirilabilir ve portfolio kimligiyle uyumlu hazirlandi.</p>
+                <div class="cv-meta">
+                    <span>Format: PDF</span>
+                    <span>Sayfa: 1</span>
+                    <span>Odak: Branding, editorial, packaging, social media</span>
+                </div>
+                <div class="cv-actions">
+                    <a class="primary" href="assets/documents/yaren-ayvali-cv.pdf" download="Yaren-Ayvali-CV.pdf">CV Indir</a>
+                    <a href="assets/documents/yaren-ayvali-cv.pdf" target="_blank" rel="noopener">Onizle</a>
+                </div>
+            </div>
+        </div>
+    </article>
+</div>
+
+<script>
+    const STORAGE_KEY = "yarenPortfolioProjects:v2";
+    const LEGACY_STORAGE_KEY = "yarenPortfolioProjects:v1";
+
+    const DEFAULT_PROJECTS = [
+        {
+            id: "beaulis",
+            title: "Beaulis",
+            category: "Branding",
+            year: "2025",
+            description: "Kozmetik markası için pembe enerjisi yüksek, genç ve modüler bir yeniden markalama sistemi. Ambalaj, sosyal medya, mağaza içi materyaller ve kampanya dili aynı görsel ritimde birleşiyor.",
+            thumb: "assets/portfolio/thumb-07.jpg",
+            cover: "assets/portfolio/page-07.jpg",
+            gallery: ["assets/portfolio/page-07.jpg", "assets/portfolio/page-08.jpg", "assets/portfolio/page-09.jpg", "assets/portfolio/page-10.jpg", "assets/portfolio/page-11.jpg", "assets/portfolio/page-12.jpg", "assets/portfolio/page-13.jpg", "assets/portfolio/page-14.jpg", "assets/portfolio/page-15.jpg"],
+            x: 27,
+            y: 18
+        },
+        {
+            id: "dr",
+            title: "D&R",
+            category: "Branding",
+            year: "2025",
+            description: "Kitap ve çocuk kategorisine uzanan sıcak, illustratif ve raf üstünde kolay seçilen bir promosyon dili. Kurumsal kimliği yumuşatan renk ve karakter sistemiyle geliştirildi.",
+            thumb: "assets/portfolio/thumb-16.jpg",
+            cover: "assets/portfolio/page-16.jpg",
+            gallery: ["assets/portfolio/page-16.jpg", "assets/portfolio/page-17.jpg"],
+            x: 17,
+            y: 55
+        },
+        {
+            id: "ovio",
+            title: "OVIO",
+            category: "Packaging",
+            year: "2025",
+            description: "Organik yumurta markası için doğal, tok ve çağdaş bir ambalaj evreni. Tipografi, illüstrasyon ve renk blokları ürün ailesini sade ama karakterli kılıyor.",
+            thumb: "assets/portfolio/thumb-18.jpg",
+            cover: "assets/portfolio/page-18.jpg",
+            gallery: ["assets/portfolio/page-18.jpg", "assets/portfolio/page-19.jpg"],
+            x: 43,
+            y: 38
+        },
+        {
+            id: "la-publishing",
+            title: "La Publishing",
+            category: "Editorial",
+            year: "2025",
+            description: "Yayıncılık markası için koyu, sinematik ve koleksiyon hissi taşıyan bir kitap sunumu. Kapak, kutu ve logotype kullanımı tek bir premium dilde toplandı.",
+            thumb: "assets/portfolio/thumb-20.jpg",
+            cover: "assets/portfolio/page-20.jpg",
+            gallery: ["assets/portfolio/page-20.jpg", "assets/portfolio/page-21.jpg"],
+            x: 63,
+            y: 22
+        },
+        {
+            id: "jazzfest",
+            title: "Bodrum JazzFest",
+            category: "Poster",
+            year: "2025",
+            description: "Festival iletişimi için hareketli, sahne ritmini taşıyan afiş ve açık hava sistemi. Mavi alanlar, güçlü tipografi ve organik formlar cazın doğaçlama hissini büyütüyor.",
+            thumb: "assets/portfolio/thumb-23.jpg",
+            cover: "assets/portfolio/page-23.jpg",
+            gallery: ["assets/portfolio/page-22.jpg", "assets/portfolio/page-23.jpg"],
+            x: 78,
+            y: 41
+        },
+        {
+            id: "luxova",
+            title: "Luxova",
+            category: "Advertising",
+            year: "2025",
+            description: "Kozmetik ve kişisel bakım odağında ışık, yüzey ve ürün ölçeğiyle çalışan kampanya görselleri. Marka dili daha rafine, temiz ve seçkin bir dünyaya taşındı.",
+            thumb: "assets/portfolio/thumb-24.jpg",
+            cover: "assets/portfolio/page-24.jpg",
+            gallery: ["assets/portfolio/page-24.jpg", "assets/portfolio/page-25.jpg"],
+            x: 86,
+            y: 19
+        },
+        {
+            id: "asian-fashion",
+            title: "Asian Fashion",
+            category: "Editorial",
+            year: "2025",
+            description: "Moda yayını için pastel, rüya gibi ve sayfa düzeni odaklı editorial tasarım. Gorsel yoğunluk, boşluk ve tipografi dengesiyle koleksiyon havası kuruldu.",
+            thumb: "assets/portfolio/thumb-26.jpg",
+            cover: "assets/portfolio/page-26.jpg",
+            gallery: ["assets/portfolio/page-26.jpg", "assets/portfolio/page-27.jpg"],
+            x: 33,
+            y: 70
+        },
+        {
+            id: "tattoo-fanzin",
+            title: "Tattoo Fanzin",
+            category: "Editorial",
+            year: "2025",
+            description: "Siyah beyaz dokular, eskiz estetiği ve kolaj sayfa sistemiyle hazırlanmış fanzin tasarımı. Ham, kişisel ve arşivsel bir yayın dili hedeflendi.",
+            thumb: "assets/portfolio/thumb-29.jpg",
+            cover: "assets/portfolio/page-29.jpg",
+            gallery: ["assets/portfolio/page-28.jpg", "assets/portfolio/page-29.jpg", "assets/portfolio/page-30.jpg"],
+            x: 51,
+            y: 64
+        },
+        {
+            id: "sion",
+            title: "Sion",
+            category: "Poster",
+            year: "2025",
+            description: "Yoğun renk, karanlık kontrast ve katmanlı tipografiyle kurulan alternatif afiş serisi. Gorseller müzik ve gece atmosferi çevresinde sertleşiyor.",
+            thumb: "assets/portfolio/thumb-31.jpg",
+            cover: "assets/portfolio/page-31.jpg",
+            gallery: ["assets/portfolio/page-31.jpg", "assets/portfolio/page-32.jpg", "assets/portfolio/page-33.jpg"],
+            x: 68,
+            y: 64
+        },
+        {
+            id: "world-art-day",
+            title: "World Art-Day",
+            category: "Poster",
+            year: "2025",
+            description: "Dünya Sanat Günü için parlak krom etkisi ve dinamik tipografiyle oluşturulmuş etkinlik afişi. Dijital heykel hissi görselin merkezinde duruyor.",
+            thumb: "assets/portfolio/thumb-34.jpg",
+            cover: "assets/portfolio/page-34.jpg",
+            gallery: ["assets/portfolio/page-34.jpg"],
+            x: 13,
+            y: 31
+        },
+        {
+            id: "personal-posters",
+            title: "Personal Posters",
+            category: "Poster",
+            year: "2025",
+            description: "Portre, renk ve deneysel grafik katmanlarla ilerleyen kişisel poster seçkisi. Her afiş farklı bir karakter ve görsel tempo taşıyor.",
+            thumb: "assets/portfolio/thumb-35.jpg",
+            cover: "assets/portfolio/page-35.jpg",
+            gallery: ["assets/portfolio/page-35.jpg"],
+            x: 89,
+            y: 61
+        },
+        {
+            id: "glow-recipe",
+            title: "Glow Recipe",
+            category: "Social Media",
+            year: "2025",
+            description: "Cilt bakım markası için pastel, yumuşak ve dijital vitrin odaklı sosyal medya sistemi. Ürün, cihaz mockup ve kutu görselleri tek kampanyada birleşiyor.",
+            thumb: "assets/portfolio/thumb-36.jpg",
+            cover: "assets/portfolio/page-36.jpg",
+            gallery: ["assets/portfolio/page-36.jpg", "assets/portfolio/page-37.jpg"],
+            x: 55,
+            y: 17
+        },
+        {
+            id: "sherlock-holmes",
+            title: "Sherlock Holmes",
+            category: "Packaging",
+            year: "2025",
+            description: "Arthur Conan Doyle evreninden beslenen kitap ve tütün ambalajı yorumu. Vintage tipografi, etiket sistemi ve kutu dili koleksiyon hissi yaratıyor.",
+            thumb: "assets/portfolio/thumb-38.jpg",
+            cover: "assets/portfolio/page-38.jpg",
+            gallery: ["assets/portfolio/page-38.jpg", "assets/portfolio/page-39.jpg", "assets/portfolio/page-40.jpg"],
+            x: 22,
+            y: 78
+        },
+        {
+            id: "longheria",
+            title: "Longheria",
+            category: "Social Media",
+            year: "2025",
+            description: "Yiyecek markası için iştah açıcı renk, sade kompozisyon ve paylaşılabilir sosyal medya şablonları. Menü ve kampanya parçaları birlikte çalışıyor.",
+            thumb: "assets/portfolio/thumb-41.jpg",
+            cover: "assets/portfolio/page-41.jpg",
+            gallery: ["assets/portfolio/page-41.jpg", "assets/portfolio/page-42.jpg"],
+            x: 75,
+            y: 78
+        },
+        {
+            id: "social-media",
+            title: "Social Media",
+            category: "Social Media",
+            year: "2025",
+            description: "Bayram, farkındalık günü ve konser duyuruları için hazırlanan sosyal medya görselleri. Her parça kendi mesajını hızlı ve net taşıyacak şekilde tasarlandı.",
+            thumb: "assets/portfolio/thumb-44.jpg",
+            cover: "assets/portfolio/page-44.jpg",
+            gallery: ["assets/portfolio/page-43.jpg", "assets/portfolio/page-44.jpg", "assets/portfolio/page-45.jpg"],
+            x: 40,
+            y: 85
+        },
+        {
+            id: "kite",
+            title: "Kite",
+            category: "Motion",
+            year: "2025",
+            description: "Açık hava ve deneysel yüzeyler üzerine kurulu canlı bir görsel sistem. Uçurtu formu, tipografi ve neon renklerle hareket hissini öne çıkarıyor.",
+            thumb: "assets/portfolio/thumb-46.jpg",
+            cover: "assets/portfolio/page-46.jpg",
+            gallery: ["assets/portfolio/page-46.jpg", "assets/portfolio/page-47.jpg"],
+            x: 60,
+            y: 86
+        }
+    ];
+
+    const fallbackPositions = [
+        [17, 24], [31, 18], [45, 28], [60, 18], [75, 28], [86, 45],
+        [69, 62], [53, 70], [36, 63], [21, 72], [12, 47], [28, 43]
+    ];
+
+    let projects = [];
+    let activeProjectIndex = 0;
+    let activeImageIndex = 0;
+    let activeFilter = "";
+
+    const desktop = document.getElementById("desktop");
+    const emptyState = document.getElementById("emptyState");
+    const projectLayer = document.getElementById("projectLayer");
+    const aboutLayer = document.getElementById("aboutLayer");
+    const cvLayer = document.getElementById("cvLayer");
+    const projectWindowTitle = document.getElementById("projectWindowTitle");
+    const projectImage = document.getElementById("projectImage");
+    const filmstrip = document.getElementById("filmstrip");
+    const projectCategory = document.getElementById("projectCategory");
+    const projectYear = document.getElementById("projectYear");
+    const projectTitle = document.getElementById("projectTitle");
+    const projectDescription = document.getElementById("projectDescription");
+    const projectCount = document.getElementById("projectCount");
+
+    function readProjectsFromStorage(key) {
+        try {
+            const raw = localStorage.getItem(key);
+            const parsed = raw ? JSON.parse(raw) : [];
+            return Array.isArray(parsed) ? parsed : [];
+        } catch (error) {
+            return [];
+        }
+    }
+
+    function normalizeProject(project, index) {
+        const point = fallbackPositions[index % fallbackPositions.length];
+        const gallery = Array.isArray(project.gallery) && project.gallery.length ? project.gallery : [project.cover].filter(Boolean);
+        return {
+            id: project.id || `project-${index}`,
+            title: project.title || "Untitled",
+            category: project.category || "Portfolio",
+            year: project.year || "2026",
+            description: project.description || "",
+            thumb: project.thumb || project.cover || gallery[0] || "",
+            cover: project.cover || gallery[0] || "",
+            gallery,
+            x: Number(project.x) || point[0],
+            y: Number(project.y) || point[1],
+            isCustom: Boolean(project.isCustom)
+        };
+    }
+
+    function loadProjects() {
+        const savedProjects = readProjectsFromStorage(STORAGE_KEY);
+        if (savedProjects.length) {
+            projects = savedProjects.map(normalizeProject);
+            return;
+        }
+
+        const legacyCustomProjects = readProjectsFromStorage(LEGACY_STORAGE_KEY).map((project) => ({ ...project, isCustom: true }));
+        projects = [...DEFAULT_PROJECTS, ...legacyCustomProjects].map(normalizeProject);
+    }
+
+    function visibleProjects() {
+        if (!activeFilter) return projects;
+        return projects.filter((project) => project.category === activeFilter);
+    }
+
+    function renderDesktop() {
+        desktop.innerHTML = "";
+        const list = visibleProjects();
+        emptyState.style.display = list.length ? "none" : "block";
+
+        list.forEach((project, index) => {
+            const button = document.createElement("button");
+            button.className = "project-icon";
+            button.type = "button";
+            button.style.setProperty("--delay", `${120 + index * 45}ms`);
+            button.setAttribute("aria-label", project.title);
+            button.innerHTML = `
+                <span class="icon-thumb"><img src="${project.thumb}" alt=""></span>
+                <span class="icon-label">${project.title}</span>
+            `;
+            button.addEventListener("click", () => openProject(project.id));
+            desktop.appendChild(button);
+        });
+    }
+
+    function closeAllWindows() {
+        projectLayer.classList.remove("is-open");
+        aboutLayer.classList.remove("is-open");
+        cvLayer.classList.remove("is-open");
+    }
+
+    function openLayer(layer) {
+        closeAllWindows();
+        layer.classList.add("is-open");
+    }
+
+    function openProject(id) {
+        const index = projects.findIndex((project) => project.id === id);
+        if (index === -1) return;
+        activeProjectIndex = index;
+        activeImageIndex = 0;
+        renderProjectWindow();
+        openLayer(projectLayer);
+    }
+
+    function renderProjectWindow() {
+        const project = projects[activeProjectIndex];
+        const images = project.gallery.length ? project.gallery : [project.cover];
+        const currentImage = images[activeImageIndex] || images[0] || "";
+        projectWindowTitle.textContent = project.title;
+        projectImage.src = currentImage;
+        projectImage.alt = project.title;
+        projectCategory.textContent = project.category;
+        projectYear.textContent = project.year;
+        projectTitle.textContent = project.title;
+        projectDescription.textContent = project.description;
+        projectCount.textContent = `${activeProjectIndex + 1} / ${projects.length}`;
+
+        filmstrip.innerHTML = "";
+        images.forEach((image, index) => {
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = index === activeImageIndex ? "is-active" : "";
+            button.setAttribute("aria-label", `${project.title} görsel ${index + 1}`);
+            button.innerHTML = `<img src="${image}" alt="">`;
+            button.addEventListener("click", () => {
+                activeImageIndex = index;
+                renderProjectWindow();
+            });
+            filmstrip.appendChild(button);
+        });
+    }
+
+    function stepProject(direction) {
+        if (!projects.length) return;
+        activeProjectIndex = (activeProjectIndex + direction + projects.length) % projects.length;
+        activeImageIndex = 0;
+        renderProjectWindow();
+    }
+
+    function applyFilter(filter) {
+        activeFilter = activeFilter === filter ? "" : filter;
+        renderDesktop();
+    }
+
+    document.getElementById("prevProject").addEventListener("click", () => stepProject(-1));
+    document.getElementById("nextProject").addEventListener("click", () => stepProject(1));
+    document.getElementById("aboutButton").addEventListener("click", () => openLayer(aboutLayer));
+    document.getElementById("cvButton").addEventListener("click", () => openLayer(cvLayer));
+    document.getElementById("clearFilterButton").addEventListener("click", () => {
+        activeFilter = "";
+        renderDesktop();
+    });
+
+    document.querySelectorAll("[data-filter]").forEach((button) => {
+        button.addEventListener("click", () => applyFilter(button.dataset.filter));
+    });
+
+    document.querySelectorAll("[data-close]").forEach((button) => {
+        button.addEventListener("click", closeAllWindows);
+    });
+
+    document.querySelectorAll(".window-layer").forEach((layer) => {
+        layer.addEventListener("click", (event) => {
+            if (event.target === layer) closeAllWindows();
+        });
+    });
+
+    window.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") closeAllWindows();
+        if (!projectLayer.classList.contains("is-open")) return;
+        if (event.key === "ArrowLeft") stepProject(-1);
+        if (event.key === "ArrowRight") stepProject(1);
+    });
+
+    window.addEventListener("storage", (event) => {
+        if (event.key === STORAGE_KEY) {
+            loadProjects();
+            renderDesktop();
+        }
+    });
+
+    loadProjects();
+    renderDesktop();
+</script>
+</body>
+</html>
